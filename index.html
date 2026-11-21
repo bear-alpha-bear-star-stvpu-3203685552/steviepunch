@@ -657,7 +657,7 @@ function cycleVar(m,d){var n=m.vars.length+1;varIdx[m.id]=(((varIdx[m.id]|0)+d)%
 function evLabel(t){return t==="Unknown"?"Unknown Event":"Event"}
 
 // ---- Mastery (per map) ----
-var MCOST=[100,200,400,800,1600,3200,6400,12800,25600,50000],SKINS={cheese:{name:"Cheddar Disciple"},start:{name:"Bear"},cove:{name:"Red Pirate"},mischief:{name:"Malbear"},yorick:{name:"Yorick"},zoo:{name:"Serpent"},lab:{name:"the Lab skin (Deluxe and Alpha)"},mono:{name:"Tears Before Bedtime"}};
+var MCOST=[100,200,400,800,1600,3200,6400,12800,25600,50000],SKINS={cheese:{name:"Cheddar Disciple"},start:{name:"Bear"},cove:{name:"Red Pirate"},mischief:{name:"Malbear"},yorick:{name:"Yorick"},zoo:{name:"Serpent"},lab:{name:"the Test Tube skin (Deluxe and Alpha)"},mono:{name:"Tears Before Bedtime"}};
 function mlevel(id){return mast[id]|0}
 function mcost(m,l){return m==="start"?0:MCOST[l]}
 function renderMast(){var m=curMap,mp=mapById(m),sk=SKINS[m],lv=mlevel(m),pp=el("mpips");
@@ -676,7 +676,7 @@ function addItem(t,node,names){var w=document.createElement("div");w.className="
 function showView(names){var row=el("vrow");row.innerHTML="";
   names.forEach(function(n){var k=SK[n],sp=SPR[k];if(!sp)return;var rar="Mastery";BEARS.forEach(function(b){if(b[0]===n)rar="Event"});
     var f=document.createElement("div");f.className="vfig";var im=document.createElement("img");im.alt=n;im.src=sp.i||sp.f[0];f.appendChild(im);
-    var nm=document.createElement("div");nm.className="vname";nm.textContent=n;f.appendChild(nm);
+    var nm=document.createElement("div");nm.className="vname";nm.textContent=({"Lab Alpha":"Test Tube Alpha","Lab Deluxe":"Test Tube Deluxe"})[n]||n;f.appendChild(nm);
     var r=document.createElement("div");r.className="vrar "+rar;r.textContent=rar;if(RCOL[rar])r.style.color=RCOL[rar];f.appendChild(r);row.appendChild(f)});
   var first=names[0],ev=BEARS.some(function(b){return b[0]===first}),bgi,fd=".72";
   if(ev){bgi=getComputedStyle(document.querySelector(".bg")).backgroundImage}else if(first==="Bear"){bgi="var(--icon)";fd=".6"}else{bgi='url("'+mapById(SKM[first]).img+'")'}
